@@ -36,7 +36,7 @@ ecossistemas = [
     "Produção e Norte",
     "Serra Gaúcha",
     "Sul",
-    "Região dos Vales"
+    "Vales"
 ]
 
 # Método pra substituir os char especial dos nomes dos ecossistemas
@@ -57,206 +57,137 @@ def get_aceleradoras_by_eco(url, headers, ecossistemas):
                         "Query": {
                             "Version": 2,
                             "From": [
-                            {
-                                "Name": "a",
-                                "Entity": "Aceleradoras",
-                                "Type": 0
-                            }
+                            { "Name": "a", "Entity": "AMBIENTES - Tabela", "Type": 0 },
+                            { "Name": "m", "Entity": "GERAL - Municípios", "Type": 0 }
                             ],
                             "Select": [
                             {
                                 "Column": {
-                                "Expression": {
-                                    "SourceRef": {
-                                    "Source": "a"
-                                    }
+                                "Expression": { "SourceRef": { "Source": "a" } },
+                                "Property": "Latitude"
                                 },
-                                "Property": "latitude"
-                                },
-                                "Name": "Aceleradoras.latitude",
-                                "NativeReferenceName": "latitude"
+                                "Name": "Min(AMBIENTES - Tabela.Latitude)",
+                                "NativeReferenceName": "Latitude"
                             },
                             {
                                 "Column": {
-                                "Expression": {
-                                    "SourceRef": {
-                                    "Source": "a"
-                                    }
+                                "Expression": { "SourceRef": { "Source": "a" } },
+                                "Property": "Longitude"
                                 },
-                                "Property": "longitude"
+                                "Name": "Min(AMBIENTES - Tabela.Longitude)",
+                                "NativeReferenceName": "Longitude"
+                            },
+                            {
+                                "Column": {
+                                "Expression": { "SourceRef": { "Source": "a" } },
+                                "Property": "Tipo de Ambiente"
                                 },
-                                "Name": "Aceleradoras.longitude",
-                                "NativeReferenceName": "longitude"
+                                "Name": "AMBIENTES - Tabela.Tipo de Ambiente",
+                                "NativeReferenceName": "Tipo de Ambiente"
                             },
                             {
                                 "Aggregation": {
                                 "Expression": {
                                     "Column": {
-                                    "Expression": {
-                                        "SourceRef": {
-                                        "Source": "a"
-                                        }
-                                    },
-                                    "Property": "sigla/nome fantasia"
+                                    "Expression": { "SourceRef": { "Source": "a" } },
+                                    "Property": "Sigla/Nome Fantasia"
                                     }
                                 },
                                 "Function": 3
                                 },
-                                "Name": "Min(Aceleradoras.sigla/nome fantasia)",
-                                "NativeReferenceName": "Sigla"
+                                "Name": "Min(AMBIENTES - Tabela.Sigla/Nome Fantasia)",
+                                "NativeReferenceName": "Primeiro Sigla/Nome Fantasia"
                             },
                             {
                                 "Aggregation": {
                                 "Expression": {
                                     "Column": {
-                                    "Expression": {
-                                        "SourceRef": {
-                                        "Source": "a"
-                                        }
-                                    },
-                                    "Property": "nome completo"
+                                    "Expression": { "SourceRef": { "Source": "a" } },
+                                    "Property": "Nome Completo"
                                     }
                                 },
                                 "Function": 3
                                 },
-                                "Name": "Min(Aceleradoras.nome completo)",
-                                "NativeReferenceName": "Nome completo"
+                                "Name": "Min(AMBIENTES - Tabela.Nome Completo)",
+                                "NativeReferenceName": "Primeiro Nome Completo"
                             },
                             {
                                 "Aggregation": {
                                 "Expression": {
                                     "Column": {
-                                    "Expression": {
-                                        "SourceRef": {
-                                        "Source": "a"
-                                        }
-                                    },
-                                    "Property": "Área de atuação"
+                                    "Expression": { "SourceRef": { "Source": "a" } },
+                                    "Property": "Site"
                                     }
                                 },
                                 "Function": 3
                                 },
-                                "Name": "Min(Aceleradoras.Área de atuação)",
-                                "NativeReferenceName": "Área de atuação"
+                                "Name": "Min(AMBIENTES - Tabela.Site)",
+                                "NativeReferenceName": "Primeiro Site"
                             },
                             {
                                 "Aggregation": {
                                 "Expression": {
                                     "Column": {
-                                    "Expression": {
-                                        "SourceRef": {
-                                        "Source": "a"
-                                        }
-                                    },
-                                    "Property": "endereco"
+                                    "Expression": { "SourceRef": { "Source": "a" } },
+                                    "Property": "E-mail"
                                     }
                                 },
                                 "Function": 3
                                 },
-                                "Name": "Min(Aceleradoras.endereco)",
-                                "NativeReferenceName": "Endereço"
+                                "Name": "Min(AMBIENTES - Tabela.E-mail)",
+                                "NativeReferenceName": "Primeiro E-mail"
                             },
                             {
                                 "Aggregation": {
                                 "Expression": {
                                     "Column": {
-                                    "Expression": {
-                                        "SourceRef": {
-                                        "Source": "a"
-                                        }
-                                    },
-                                    "Property": "cep"
+                                    "Expression": { "SourceRef": { "Source": "a" } },
+                                    "Property": "Áreas de Atuação"
                                     }
                                 },
                                 "Function": 3
                                 },
-                                "Name": "Min(Aceleradoras.cep)",
-                                "NativeReferenceName": "CEP"
+                                "Name": "Min(AMBIENTES - Tabela.Áreas de Atuação)",
+                                "NativeReferenceName": "Primeiro Áreas de Atuação"
                             },
                             {
                                 "Aggregation": {
                                 "Expression": {
                                     "Column": {
-                                    "Expression": {
-                                        "SourceRef": {
-                                        "Source": "a"
-                                        }
-                                    },
-                                    "Property": "municipio"
+                                    "Expression": { "SourceRef": { "Source": "a" } },
+                                    "Property": "Município"
                                     }
                                 },
                                 "Function": 3
                                 },
-                                "Name": "Min(Aceleradoras.municipio)",
-                                "NativeReferenceName": "Município"
+                                "Name": "Min(AMBIENTES - Tabela.Município)",
+                                "NativeReferenceName": "Primeiro Município"
                             },
                             {
                                 "Aggregation": {
                                 "Expression": {
                                     "Column": {
-                                    "Expression": {
-                                        "SourceRef": {
-                                        "Source": "a"
-                                        }
-                                    },
-                                    "Property": "ERIs"
+                                    "Expression": { "SourceRef": { "Source": "a" } },
+                                    "Property": "ERI"
                                     }
                                 },
                                 "Function": 3
                                 },
-                                "Name": "Min(Aceleradoras.ERIs)",
-                                "NativeReferenceName": "ERI"
+                                "Name": "Min(AMBIENTES - Tabela.ERI)",
+                                "NativeReferenceName": "Primeiro ERI"
                             },
                             {
                                 "Aggregation": {
                                 "Expression": {
                                     "Column": {
-                                    "Expression": {
-                                        "SourceRef": {
-                                        "Source": "a"
-                                        }
-                                    },
-                                    "Property": "telefone"
+                                    "Expression": { "SourceRef": { "Source": "a" } },
+                                    "Property": "Telefone"
                                     }
                                 },
                                 "Function": 3
                                 },
-                                "Name": "Min(Aceleradoras.telefone)",
-                                "NativeReferenceName": "Telefone"
-                            },
-                            {
-                                "Aggregation": {
-                                "Expression": {
-                                    "Column": {
-                                    "Expression": {
-                                        "SourceRef": {
-                                        "Source": "a"
-                                        }
-                                    },
-                                    "Property": "email"
-                                    }
-                                },
-                                "Function": 3
-                                },
-                                "Name": "Min(Aceleradoras.email)",
-                                "NativeReferenceName": "E-mail"
-                            },
-                            {
-                                "Aggregation": {
-                                "Expression": {
-                                    "Column": {
-                                    "Expression": {
-                                        "SourceRef": {
-                                        "Source": "a"
-                                        }
-                                    },
-                                    "Property": "site"
-                                    }
-                                },
-                                "Function": 3
-                                },
-                                "Name": "Min(Aceleradoras.site)",
-                                "NativeReferenceName": "Site"
+                                "Name": "Min(AMBIENTES - Tabela.Telefone)",
+                                "NativeReferenceName": "Primeiro Telefone"
                             }
                             ],
                             "Where": [
@@ -266,23 +197,62 @@ def get_aceleradoras_by_eco(url, headers, ecossistemas):
                                     "Expressions": [
                                     {
                                         "Column": {
-                                        "Expression": {
-                                            "SourceRef": {
-                                            "Source": "a"
-                                            }
-                                        },
-                                        "Property": "ERIs"
+                                        "Expression": { "SourceRef": { "Source": "a" } },
+                                        "Property": "ERI"
+                                        }
+                                    },
+                                    {
+                                        "Column": {
+                                        "Expression": { "SourceRef": { "Source": "a" } },
+                                        "Property": "Tipo de Ambiente"
                                         }
                                     }
                                     ],
                                     "Values": [
                                     [
                                         {
-                                        "Literal": {
-                                            "Value": f"'{eco}'"
-                                        }
-                                        }
+                                        "Literal": { "Value": f"'{eco}'" }
+                                        },
+                                        { "Literal": { "Value": "'Aceleradora'" } }
                                     ]
+                                    ]
+                                }
+                                }
+                            },
+                            {
+                                "Condition": {
+                                "Not": {
+                                    "Expression": {
+                                    "In": {
+                                        "Expressions": [
+                                        {
+                                            "Column": {
+                                            "Expression": {
+                                                "SourceRef": { "Source": "m" }
+                                            },
+                                            "Property": "ERI"
+                                            }
+                                        }
+                                        ],
+                                        "Values": [[{ "Literal": { "Value": "null" } }]]
+                                    }
+                                    }
+                                }
+                                }
+                            },
+                            {
+                                "Condition": {
+                                "In": {
+                                    "Expressions": [
+                                    {
+                                        "Column": {
+                                        "Expression": { "SourceRef": { "Source": "a" } },
+                                        "Property": "Tipo de Ambiente"
+                                        }
+                                    }
+                                    ],
+                                    "Values": [
+                                    [{ "Literal": { "Value": "'Aceleradora'" } }]
                                     ]
                                 }
                                 }
@@ -292,32 +262,37 @@ def get_aceleradoras_by_eco(url, headers, ecossistemas):
                         "Binding": {
                             "Primary": {
                             "Groupings": [
-                                {
-                                "Projections": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-                                }
+                                { "Projections": [2] },
+                                { "Projections": [0, 1, 3, 4, 5, 6, 7, 8, 9, 10] }
                             ]
                             },
-                            "SuppressedJoinPredicates": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-                            "Version": 1,
                             "DataReduction": {
-                            "DataVolume": 4,
+                            "DataVolume": 6,
                             "Primary": {
                                 "OverlappingPointsSample": {
-                                "X": {
-                                    "Index": 1
-                                },
-                                "Y": {
-                                    "Index": 0
-                                }
+                                "X": { "Index": 1 },
+                                "Y": { "Index": 0 }
                                 }
                             }
-                            }
-                        }
+                            },
+                            "SuppressedJoinPredicates": [3, 4, 5, 6, 7, 8, 9, 10],
+                            "Version": 1
+                        },
+                        "ExecutionMetricsKind": 1
                         }
                     }
                     ]
                 },
-                "QueryId": ""
+                "QueryId": "",
+                "ApplicationContext": {
+                    "DatasetId": "43ae77f6-e15b-4975-aba8-121f809c8513",
+                    "Sources": [
+                    {
+                        "ReportId": "9ef11196-4f9b-4929-b1e9-25c7afdacbfe",
+                        "VisualId": "4c169f0d1b808e0ba264"
+                    }
+                    ]
+                }
                 }
             ],
             "cancelQueries": [],

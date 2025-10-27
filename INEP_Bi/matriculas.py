@@ -19,6 +19,7 @@ def get_matriculas(url, headers):
     with open("json_instituicoes.json", "r", encoding="utf-8") as f:
         data = json.load(f)
         for instituicao in data:
+            safe_name = instituicao.replace("'", "''")
             json_model = {
                 "version": "1.0.0",
                 "queries": [
@@ -138,7 +139,7 @@ def get_matriculas(url, headers):
                                         [
                                             {
                                             "Literal": {
-                                                "Value": f"'{instituicao}'"
+                                                "Value": f"'{safe_name}'"
                                             }
                                             }
                                         ]
@@ -267,18 +268,7 @@ def get_matriculas(url, headers):
             req.encoding = req.apparent_encoding
             req_json = req.json()
 
-            try:
-                rows = req_json["results"][0]["result"]["data"]["dsr"]["DS"][0]["PH"][0]["DM0"]
-            except:
-                print("Erro na: "+ instituicao + "\n")
-                # Grava o json da instituicao que deu erro
-                folder = "erros"
-                os.makedirs(folder, exist_ok=True)
-                # Nome do arquivo é o nome do ecossistema
-                file_name = instituicao.replace(" ", "_").replace("ã", "a").replace("ç", "c").replace("õ", "o").replace("ú", "u").replace("í", "i").replace("é", "e")
-                complete_path = os.path.join(folder, file_name + ".json")
-                with open(complete_path, "w", encoding="utf-8") as f:
-                    f.write(json.dumps(req_json, ensure_ascii=False, indent=2))
+            rows = req_json["results"][0]["result"]["data"]["dsr"]["DS"][0]["PH"][0]["DM0"]
                     
             # Pega o ano e o nro de matriculados
             for r in rows:

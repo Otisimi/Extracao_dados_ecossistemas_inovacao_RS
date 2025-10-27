@@ -1,6 +1,5 @@
 import requests
 import json
-import re
 import os
 
 url = "https://wabi-brazil-south-b-primary-api.analysis.windows.net/public/reports/querydata?synchronous=true"

@@ -69,7 +69,19 @@ def montar_json(eco):
                                     ]
                                 },
                                 "Binding": {
-                                    "Primary": {"Groupings": [{"Projections": [0]}]},
+                                    "Primary": {
+                                        "Groupings": [
+                                            {"Projections": [0]}
+                                        ]
+                                    },
+                                    "DataReduction": {
+                                        "DataVolume": 3,
+                                        "Primary": {
+                                            "Window": {
+                                                "Count": 5000
+                                            }
+                                        }
+                                    },
                                     "IncludeEmptyGroups": True,
                                     "Version": 1
                                 },
@@ -94,8 +106,7 @@ def montar_json(eco):
         "modelId": 3574567
     }
 
-
-with open('nomes_startups.csv', "a", newline="", encoding="utf-8") as f:
+with open('nomes_startups.csv', "w", newline="", encoding="utf-8") as f:
     w = csv.writer(f, delimiter=";")
     w.writerow(["Ecossistema", "Startup"])
 
