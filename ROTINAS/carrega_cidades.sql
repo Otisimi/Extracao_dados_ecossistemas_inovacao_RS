@@ -1,9 +1,9 @@
--- PROCEDURE: public.carrega_cidades()
+-- PROCEDURE: public.carrega_cidades(text)
 
--- DROP PROCEDURE IF EXISTS public.carrega_cidades();
+-- DROP PROCEDURE IF EXISTS public.carrega_cidades(text);
 
 CREATE OR REPLACE PROCEDURE public.carrega_cidades(
-	)
+	IN pi_arq text)
 LANGUAGE 'plpgsql'
 AS $BODY$
 DECLARE
@@ -13,9 +13,8 @@ DECLARE
     wcols     text[];
 	weco_id	  int;
     i 		  int;
-    j 		  int;
 BEGIN
-    wconteudo := pg_read_file('dados_ecos/cidades.csv');
+    wconteudo := pg_read_file(PI_ARQ);
     -- Tira a quebra de linha 
 	wconteudo := replace(wconteudo, E'\r', '');
     -- Quebra por linhas
@@ -48,5 +47,5 @@ BEGIN
     END LOOP;
 END 
 $BODY$;
-ALTER PROCEDURE public.carrega_cidades()
+ALTER PROCEDURE public.carrega_cidades(text)
     OWNER TO postgres;

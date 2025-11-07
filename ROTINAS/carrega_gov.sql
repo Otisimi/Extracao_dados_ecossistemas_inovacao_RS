@@ -1,8 +1,8 @@
--- PROCEDURE: public.carrega_instituicoes(text)
+-- PROCEDURE: public.carrega_gov(text)
 
--- DROP PROCEDURE IF EXISTS public.carrega_instituicoes(text);
+-- DROP PROCEDURE IF EXISTS public.carrega_gov(text);
 
-CREATE OR REPLACE PROCEDURE public.carrega_instituicoes(
+CREATE OR REPLACE PROCEDURE public.carrega_gov(
 	IN pi_arq text)
 LANGUAGE 'plpgsql'
 AS $BODY$
@@ -11,9 +11,8 @@ DECLARE
     wlin	  text;
 	wlinhas   text[];
     wcols     text[];
-	wtip_inst int;
 	wcid_id	  int;
-	wnum_mats int;
+	wnome_cid text;
     i 		  int;
 BEGIN
     wconteudo := pg_read_file(PI_ARQ);
@@ -25,25 +24,27 @@ BEGIN
 		IF wcols IS NOT NULL 
 			AND array_length(wcols, 1) > 0 THEN
 			BEGIN
+				wnome_cid := unaccent(replace(UPPER(TRIM(wcols[3])), '''', ''));
+			
 				SELECT cid.id
 				  INTO STRICT wcid_id
 				  FROM cidades cid
-				 WHERE UPPER(TRIM(cid.nome)) LIKE UPPER(TRIM(wcols[3]));
+				 WHERE unaccent(UPPER(TRIM(cid.nome))) LIKE wnome_cid;
 			 EXCEPTION WHEN NO_DATA_FOUND THEN
 		           RAISE EXCEPTION 'Cidade não encontrada: %', wcols[3];
 			END;
 
 			BEGIN
-			    INSERT INTO instituicoes (sigla, nome, tip_inst, cid_id, ind_principal)
-			    VALUES (wcols[1], wcols[2], 1, wcid_id, 1);
+			    INSERT INTO entidades_gov (entidade, nome_uni, cid_id)
+			    VALUES (wcols[1], wcols[2], wcid_id);
 			EXCEPTION
 			    WHEN OTHERS THEN
-			        RAISE EXCEPTION 'Erro ao inserir instituição: %, Detalhe: %', wcols[2], SQLERRM;
+			        RAISE EXCEPTION 'Erro ao inserir unidade: %, Detalhe: %', wcols[2], SQLERRM;
 			END;
 				
 		END IF;
-    END LOOP;	
+    END LOOP;
 END 
 $BODY$;
-ALTER PROCEDURE public.carrega_instituicoes(text)
+ALTER PROCEDURE public.carrega_gov(text)
     OWNER TO postgres;

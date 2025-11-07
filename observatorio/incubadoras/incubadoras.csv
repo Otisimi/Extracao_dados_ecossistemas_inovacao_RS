@@ -1,10 +1,12 @@
 Ecossistema;Sigla;Nome;Cidade;Link
 Central;CONECTA;Incubadora Tecnológica CONECTA;Cruz Alta;https://home.unicruz.edu.br/agencia-start/#incubadora-tecnologica
 Central;IFFar - Campus Jaguari;IFFar - Incubadora Campus Jaguari;Jaguari;http://incubadora.iffarroupilha.edu.br
+Central;IFFar - Campus Júlio de Castilhos;IFFar - Incubadora Campus Júlio de Castilhos;Júlio de Castilhos;http://incubadora.iffarroupilha.edu.br
 Central;IFFar - Campus São Vicente do Sul;IFFar - Incubadora Campus São Vicente do Sul;São Vicente do Sul;http://incubadora.iffarroupilha.edu.br
 Central;IFRS- InoVa;IFRS - InoVa - Incubadora Tecnológica / Campus Vacaria;Vacaria;
 Central;Incubadora CRESCER;Incubadora CRESCER - Universidade Regional Integrada do Alto Uruguai e das Missões - Campus Santiago;Santiago;http://www.urisantiago.br/
 Central;Incubadora Social UFSM;;Santa Maria;
+Central;Incubadora Tecno-social UERGS;;Cachoeira do Sul;
 Central;ITEC UFN;Itec - Incubadora Tecnologica da UFN;Santa Maria;https://www.ufn.edu.br/site/inovacao/ambiente-de-inovacao
 Central;Pulsar;Pulsar - Incubadora Tecnológica da UFSM;Santa Maria;https://www.ufsm.br/orgaos-suplementares/inovatec/pulsar
 Fronteira Oeste e Campanha;GENUS;Incubadora Tecnológica do Campus Bagé da Unipampa - Genus;Bagé;http://incubadora.iffarroupilha.edu.br
@@ -12,6 +14,7 @@ Fronteira Oeste e Campanha;IFFar - Campus Alegrete;IFFar - Incubadora Campus Ale
 Fronteira Oeste e Campanha;IFFar - Campus São Borja;IFFar - Incubadora Campus São Borja;São Borja;http://incubadora.iffarroupilha.edu.br
 Fronteira Oeste e Campanha;IFFar - Campus Uruguaiana;IFFar - Incubadora Campus Uruguaiana;Uruguaiana;http://incubadora.iffarroupilha.edu.br
 Fronteira Oeste e Campanha;PampaTec Incubadora;Incubadora de Empresas de Base Tecnológica do PampaTec;Alegrete;https://sites.unipampa.edu.br/pampatec/incubadora/
+Fronteira Oeste e Campanha;UALL;UALL - Ambiente de Inovação;Bagé;https://urcamp.edu.br/pesquisa-e-extensao/inovacao/uall-ambiente-de-inovacao
 Metropolitana e Litoral Norte;Casa das Startups;Casa das Startups /Pradotech;Gravataí;
 Metropolitana e Litoral Norte;CEI;Centro de Empreendimentos em Informática;Porto Alegre;http://www.inf.ufrgs.br/cei/
 Metropolitana e Litoral Norte;HESTIA;Incubadora Hestia;Porto Alegre;https://www.ufrgs.br/hestia/
@@ -37,6 +40,7 @@ Metropolitana e Litoral Norte;ULBRATECH - Torres;Ulbratech Incubadora Torres;Tor
 Metropolitana e Litoral Norte;UNITEC;Unidade de Inovação e Tecnologia;São Leopoldo;https://www.tecnosinos.com.br/programa-de-incubacao/
 Noroeste e Missões;Criatec - Ijuí;Incubadora de Empresas de Inovação Tecnológica;Ijuí;http://criatecunijui.com.br/
 Noroeste e Missões;Criatec - Santa Rosa;Incubadora de Empresas de Inovação Tecnológica;Santa Rosa;http://criatecunijui.com.br/
+Noroeste e Missões;Horizonte- FAHOR;FAHOR - Horizonte Ambiente Empreendedor;Horizontina;https://ambienteempreendedor.com.br/contato/
 Noroeste e Missões;IATI-FEMA;Incubadora Acadêmica de Tecnologia e Inovação - IATI;Santa Rosa;https://www.iatifema.com.br/
 Noroeste e Missões;IFFar - Campus Panambi;IFFar - Incubadora Campus Panambi;Panambi;http://incubadora.iffarroupilha.edu.br
 Noroeste e Missões;IFFar - Campus Santa Rosa;IFFar - Incubadora Campus Santa Rosa;Santa Rosa;http://incubadora.iffarroupilha.edu.br
