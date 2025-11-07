@@ -1,5 +1,7 @@
 call exec_all();
 
+select * from eventos;
+
 select * from cidades c  where vlr_invest is not null;
 
 select * From instituicoes where ind_principal = 1 and num_bolsas is not null;

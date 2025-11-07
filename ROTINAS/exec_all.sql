@@ -9,8 +9,10 @@ AS $BODY$
 BEGIN
 	CALL reset_tables();
 	CALL cria_tabelas();						  
-	-- Ecos
+	-- Ecossistemas de inovação
 	CALL carrega_ecossistemas('dados_ecos/ecossistemas_rs.csv');
+	-- Eventos
+	CALL carrega_eventos('dados_ecos/eventos.csv');
 	-- Cidades
 	CALL carrega_cidades('dados_ecos/cidades.csv');
 	-- Investimento em P&D
