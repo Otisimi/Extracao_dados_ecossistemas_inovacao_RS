@@ -2,8 +2,8 @@
 
 -- DROP PROCEDURE IF EXISTS public.carrega_pessoas(text);
 
-CREATE OR REPLACE PROCEDURE public.carrega_pessoas(IN pi_arq text
-	)
+CREATE OR REPLACE PROCEDURE public.carrega_pessoas(
+	IN pi_arq text)
 LANGUAGE 'plpgsql'
 AS $BODY$
 DECLARE
@@ -51,9 +51,9 @@ BEGIN
 				END;
 
 				wtitulo := CASE  
-							  WHEN UPPER(TRIM(wcols[3])) = 'Especialização' THEN 1
-							  WHEN UPPER(TRIM(wcols[3])) = 'Mestrado' THEN 2
-							  WHEN UPPER(TRIM(wcols[3])) = 'Doutorado' THEN 3
+							  WHEN TRIM(wcols[3]) = 'Especialização' THEN 1
+							  WHEN TRIM(wcols[3]) = 'Mestrado' THEN 2
+							  WHEN TRIM(wcols[3]) = 'Doutorado' THEN 3
 							  ELSE 4
 						   END;
 

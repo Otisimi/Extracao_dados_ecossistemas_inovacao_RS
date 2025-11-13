@@ -2,7 +2,8 @@
 
 -- DROP PROCEDURE IF EXISTS public.carrega_startups(text);
 
-CREATE OR REPLACE PROCEDURE carrega_startups(IN pi_arq text)
+CREATE OR REPLACE PROCEDURE public.carrega_startups(
+	IN pi_arq text)
 LANGUAGE 'plpgsql'
 AS $BODY$
 DECLARE
@@ -49,20 +50,30 @@ BEGIN
 			ELSE
 				BEGIN
 					SELECT amb.id
-					  INTO wamb_id
+					  INTO STRICT wamb_id
 					  FROM ambientes_inov amb
-					 WHERE UPPER(TRIM(amb.sigla)) LIKE '%' || REPLACE(UPPER(TRIM(wcols[10])), ' ', '%') || '%'
-					   AND amb.cid_id = wcid_id;
-				EXCEPTION 
-					WHEN NO_DATA_FOUND THEN
-						-- Insere ambiente como "Outro"
-						INSERT INTO ambientes_inov (sigla, tip_amb, cid_id)
-						VALUES (wcols[10], 4, wcid_id);
-						-- Pega o ID novo do ambiente adicionado
-						SELECT amb.id
-						  INTO STRICT wamb_id
-						  FROM ambientes_inov amb
-						 WHERE UPPER(TRIM(amb.sigla)) LIKE UPPER(TRIM(wcols[10]));
+					 WHERE UPPER(TRIM(amb.sigla)) LIKE '%' || REPLACE(UPPER(TRIM(wcols[10])), '', '%') || '%' 
+					 LIMIT 1;
+				EXCEPTION WHEN NO_DATA_FOUND THEN
+						-- Ve se ja tem com mesma sigla, mas cidade diferente
+						BEGIN
+							SELECT amb.id
+							  INTO STRICT wamb_id
+							  FROM ambientes_inov amb
+							 WHERE UPPER(TRIM(amb.sigla)) LIKE '%' || REPLACE(UPPER(TRIM(wcols[10])), '', '%') || '%'
+							 LIMIT 1;
+						EXCEPTION WHEN NO_DATA_FOUND THEN
+							-- Insere ambiente como "Outro"
+							INSERT INTO ambientes_inov (sigla, tip_amb, cid_id)
+							VALUES (wcols[10], 4, wcid_id);
+							-- Pega o ID novo do ambiente adicionado
+							SELECT amb.id
+							  INTO STRICT wamb_id
+							  FROM ambientes_inov amb
+							 WHERE UPPER(TRIM(amb.sigla)) LIKE '%' || REPLACE(UPPER(TRIM(wcols[10])), '', '%') || '%'
+							  AND amb.cid_id = wcid_id
+							 LIMIT 1;
+						END;
 			 	WHEN OTHERS THEN
 		           RAISE EXCEPTION 'ERRO Ambiente: %; %', wcols[10], SQLERRM;
 				END;
